@@ -1,24 +1,26 @@
 import React, { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import Button from "./Button";
 
 class FormValidation extends Component {
     state = {
         mail: '',
         name: '',
         surname: '',
-        city: '',
         street: '',
         streetNumber: '',
+        city: '',
         postcode: '',
 
-        isLoading: false,
         mailError: false,
         nameError: false,
         surnameError: false,
         streetError: false,
         streetNumberError: false,
         cityError: false,
-        postcodeError: false
+        postcodeError: false,
+
+        isLoading: false
     };
 
     handleSubmit = (e) => {
@@ -31,32 +33,9 @@ class FormValidation extends Component {
         }, 100);
     };
 
-    handleMail = (e) => {
-        this.setState({mail: e.target.value})
-    };
 
-    handleName = (e) => {
-        this.setState({name: e.target.value})
-    };
-
-    handleSurname = (e) => {
-        this.setState({surname: e.target.value})
-    };
-
-    handleStreetNumber = (e) => {
-        this.setState({streetNumber: e.target.value})
-    };
-
-    handleStreet = (e) => {
-        this.setState({street: e.target.value})
-    };
-
-    handleCity = (e) => {
-        this.setState({city: e.target.value})
-    };
-
-    handlePostcode = (e) => {
-        this.setState({postcode: e.target.value})
+    handleChange = (e) => {
+        this.setState({[e.target.name]: e.target.value});
     };
 
     handleValidation() {
@@ -99,6 +78,7 @@ class FormValidation extends Component {
         }
     };
 
+    // todo and then send
     validateStreet = () => {
         const regex = /^([^0-9]*)$/;
 
@@ -144,59 +124,56 @@ class FormValidation extends Component {
     };
 
     render() {
-        const classes = ['form-input'];
-
-
         return (
             <form className="card" onSubmit={this.handleSubmit}>
 
                 <div className="form-item">
-                    <label className="form-label" htmlFor="email">E-Mail Adresse</label>
-                    <input className={this.state.mailError ? 'form-error' : 'form-input'} onChange={this.handleMail} id="email" type="text" value={this.state.mail}/>
+                    <label className="form-label" htmlFor="mail">E-Mail Adresse</label>
+                    <input className={this.state.mailError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="mail" type="text" value={this.state.mail}/>
                     {this.state.mailError && <span>Please check your mail again</span>}
                 </div>
 
                 <div className="form-group">
                     <div className="form-item">
                         <label className="form-label" htmlFor="name">Vorname</label>
-                        <input className={this.state.nameError ? 'form-error' : 'form-input'} onChange={this.handleName} id="name" type="text" value={this.state.name}/>
+                        <input className={this.state.nameError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="name" type="text" value={this.state.name}/>
                         {this.state.nameError && <span>Please check your name again</span>}
                     </div>
 
                     <div className="form-item">
                         <label className="form-label" htmlFor="surname">Nachname</label>
-                        <input className={this.state.surnameError ? 'form-error' : 'form-input'} onChange={this.handleSurname} id="surname" type="text" value={this.state.surname}/>
+                        <input className={this.state.surnameError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="surname" type="text" value={this.state.surname}/>
                         {this.state.surnameError && <span>Please check your surname again</span>}
                     </div>
 
                     <div className="form-item">
                         <label className="form-label" htmlFor="street">Straße</label>
-                        <input className={this.state.streetError ? 'form-error' : 'form-input'} onChange={this.handleStreet} id="street" type="text" value={this.state.street}/>
+                        <input className={this.state.streetError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="street" type="text" value={this.state.street}/>
                         {this.state.streetError && <span>Please check your street again</span>}
                     </div>
 
                     <div className="form-item">
                         <label className="form-label" htmlFor="streetNumber">Straßennummer</label>
-                        <input className={this.state.streetNumberError ? 'form-error' : 'form-input'} onChange={this.handleStreetNumber} id="streetNumber" type="text" value={this.state.streetNumber}/>
+                        <input className={this.state.streetNumberError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="streetNumber" type="text" value={this.state.streetNumber}/>
                         {this.state.streetNumberError && <span>Please check your street number again</span>}
                     </div>
 
                     <div className="form-item">
                         <label className="form-label" htmlFor="city">Stadt</label>
-                        <input className={this.state.cityError ? 'form-error' : 'form-input'} onChange={this.handleCity} id="city" type="text" value={this.state.city}/>
+                        <input className={this.state.cityError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="city" type="text" value={this.state.city}/>
                         {this.state.cityError && <span>Please check your city again</span>}
                     </div>
 
                     <div className="form-item">
                         <label className="form-label" htmlFor="postcode">Postleitszahl</label>
-                        <input className={this.state.postcodeError ? 'form-error' : 'form-input'} onChange={this.handlePostcode} id="postcode" type="text" value={this.state.postcode}/>
+                        <input className={this.state.postcodeError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="postcode" type="text" value={this.state.postcode}/>
                         {this.state.postcodeError && <span>Please check your postcode again</span>}
                     </div>
                 </div>
 
                 {this.state.isLoading && <LoadingSpinner message="... Validating"/>}
 
-                <button className="form-button">Bewerben</button>
+                <Button message="Bewerben"/>
             </form>
         );
     }
