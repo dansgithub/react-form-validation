@@ -78,18 +78,13 @@ class FormValidation extends Component {
         }
     };
 
-    // todo and then send
     validateStreet = () => {
-        const regex = /^([^0-9]*)$/;
+        const regex = /^[a-z ,.'-]+$/i;
 
-        if((!regex.test(this.state.street))) {
+        if(!regex.test(this.state.street)) {
             this.setState({
                 streetError: true
             });
-        } else if(this.state.street.length === 0) {
-            this.setState({
-                streetError: true
-            })
         }
     };
 
