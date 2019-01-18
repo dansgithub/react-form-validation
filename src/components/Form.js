@@ -30,7 +30,7 @@ class FormValidation extends Component {
         setTimeout(() => {
             this.handleValidation();
             this.setState({isLoading: false})
-        }, 100);
+        }, 1000);
     };
 
 
