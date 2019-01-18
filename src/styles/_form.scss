@@ -1,3 +1,15 @@
+.form-group {
+    > .form-item {
+        margin-top: $gutter * 2;
+    }
+
+    @media #{$tablet} {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: $gutter;
+    }
+}
+
 .form-item {
     display: flex;
     flex-direction: column;
@@ -10,7 +22,7 @@
 }
 
 .form-input {
-    border: 3px solid rebeccapurple;
+    border: 3px solid $highlight-color;
     border-radius: 3px;
     padding: $gutter * 2;
 }
@@ -22,11 +34,11 @@
 }
 
 .form-button {
-    background-color: rebeccapurple;
+    background-color: $highlight-color;
     color: #fff;
     padding: $gutter * 2;
     width: 100%;
-    border: 1px solid rebeccapurple;
+    border: 1px solid $highlight-color;
     border-radius: inherit;
     text-align: left;
     margin-top: $gutter;
@@ -38,14 +50,3 @@
     }
 }
 
-.form-group {
-    > .form-item {
-        margin-top: $gutter * 2;
-    }
-
-    @media #{$tablet} {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: $gutter;
-    }
-}
