@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 class FormValidation extends Component {
     state = {
@@ -53,14 +54,10 @@ class FormValidation extends Component {
         this.validateMail();
         this.validateName();
         this.validateSurname();
+        this.validateStreet();
+        this.validateStreetNumber();
         this.validatePostcode();
     }
-
-    validateName = () => {
-        if(this.state.name.length > 3) {
-            console.log('validate length and if number is in string');
-        }
-    };
 
     validateMail = () => {
         const regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
@@ -70,12 +67,44 @@ class FormValidation extends Component {
         }
     };
 
+    validateName = () => {
+        const regex = /^[a-z ,.'-]+$/i;
+
+        if(regex.test(this.state.name)) {
+            console.log('your name is valid');
+        }
+    };
+
     validateSurname = () => {
-        console.log(this.state.surname);
+        const regex = /^[a-z ,.'-]+$/i;
+
+        if(regex.test(this.state.surname)) {
+            console.log('your surname is valid');
+        }
+    };
+
+    validateStreet = () => {
+        const regex = /^([^0-9]*)$/;
+
+        if(regex.test(this.state.street)) {
+            console.log('your street is valid');
+        }
+    };
+
+    validateStreetNumber = () => {
+        const regex = /^([^0-9]*)$/;
+
+        if(regex.test(this.state.streetNumber)) {
+            console.log('your streetnumber is valid');
+        }
     };
 
     validatePostcode = () => {
-        console.log(this.state.postcode);
+        const regex = /^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$/;
+
+        if(regex.test(this.state.postcode)) {
+            console.log('your postcode is valid');
+        }
     };
 
     render() {
@@ -85,13 +114,13 @@ class FormValidation extends Component {
             <form className="card" onSubmit={this.handleSubmit}>
 
                 <div className="form-item">
-                    <label className="form-label" htmlFor="email">E-Mail</label>
+                    <label className="form-label" htmlFor="email">E-Mail Adresse</label>
                     <input className={classes} onChange={this.handleMail} id="email" type="text" value={this.state.mail}/>
                 </div>
 
                 <div className="form-group">
                     <div className="form-item">
-                        <label className="form-label" htmlFor="name">Name</label>
+                        <label className="form-label" htmlFor="name">Vorname</label>
                         <input className={classes} onChange={this.handleName} id="name" type="text" value={this.state.name}/>
                     </div>
 
@@ -120,6 +149,8 @@ class FormValidation extends Component {
                         <input className={classes} onChange={this.handlePostcode} id="postcode" type="text" value={this.state.postcode}/>
                     </div>
                 </div>
+
+                {this.state.isLoading && <LoadingSpinner message="... Validating"/>}
 
                 <button className="form-button">Bewerben</button>
             </form>
