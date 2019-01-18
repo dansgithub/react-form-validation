@@ -33,7 +33,6 @@ class FormValidation extends Component {
         }, 1000);
     };
 
-
     handleChange = (e) => {
         this.setState({[e.target.name]: e.target.value});
     };
@@ -46,9 +45,9 @@ class FormValidation extends Component {
         this.validateStreetNumber();
         this.validateCity();
         this.validatePostcode();
-    }
+    };
 
-    validateMail = () => {
+    validateMail() {
         const regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
         if(!regex.test(this.state.mail)) {
@@ -58,7 +57,7 @@ class FormValidation extends Component {
         }
     };
 
-    validateName = () => {
+    validateName() {
         const regex = /^[a-z ,.'-]+$/i;
 
         if(!regex.test(this.state.name)) {
@@ -68,7 +67,7 @@ class FormValidation extends Component {
         }
     };
 
-    validateSurname = () => {
+    validateSurname() {
         const regex = /^[a-z ,.'-]+$/i;
 
         if(!regex.test(this.state.surname)) {
@@ -78,7 +77,7 @@ class FormValidation extends Component {
         }
     };
 
-    validateStreet = () => {
+    validateStreet() {
         const regex = /^[a-z ,.'-]+$/i;
 
         if(!regex.test(this.state.street)) {
@@ -88,7 +87,7 @@ class FormValidation extends Component {
         }
     };
 
-    validateStreetNumber = () => {
+    validateStreetNumber() {
         const regex = /^([^0-9]*)$/;
 
         if((regex.test(this.state.streetNumber))) {
@@ -98,7 +97,7 @@ class FormValidation extends Component {
         }
     };
 
-    validateCity = () => {
+    validateCity() {
         const regex = /^-?\d*\.?\d*$/;
 
         if(regex.test(this.state.city)) {
@@ -108,7 +107,7 @@ class FormValidation extends Component {
         }
     };
 
-    validatePostcode = () => {
+    validatePostcode() {
         const regex = /^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$/;
 
         if(!regex.test(this.state.postcode)) {
@@ -121,7 +120,6 @@ class FormValidation extends Component {
     render() {
         return (
             <form className="card" onSubmit={this.handleSubmit}>
-
                 <div className="form-item">
                     <label className="form-label" htmlFor="mail">E-Mail Adresse</label>
                     <input className={this.state.mailError ? 'form-error' : 'form-input'} onChange={this.handleChange} name="mail" type="text" value={this.state.mail}/>
