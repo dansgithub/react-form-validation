@@ -1,0 +1,45 @@
+.form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    margin-left: $gutter * 1.5;
+    margin-bottom: $gutter / 2;
+    font-weight: 500;
+}
+
+.form-input {
+    border: 3px solid rebeccapurple;
+    border-radius: 3px;
+    padding: $gutter * 2;
+}
+
+.form-button {
+    background-color: rebeccapurple;
+    color: #fff;
+    padding: $gutter * 2;
+    width: 100%;
+    border: 1px solid rebeccapurple;
+    border-radius: inherit;
+    text-align: left;
+    margin-top: $gutter;
+
+    @media #{$tablet} {
+        width: 200px;
+        display: flex;
+        margin-left: auto;
+    }
+}
+
+.form-group {
+    > .form-item {
+        margin-top: $gutter * 2;
+    }
+
+    @media #{$tablet} {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: $gutter;
+    }
+}

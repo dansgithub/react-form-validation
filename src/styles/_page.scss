@@ -1,0 +1,12 @@
+.page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: $gutter * 2;
+
+    @media #{$tablet} {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+}
